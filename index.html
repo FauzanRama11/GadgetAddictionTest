@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Avd Prak GUI</title>
+  <!-- Sertakan SweetAlert CSS dan JavaScript -->
+  <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <!-- Index -->
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <div class="box">
+    <div class="structure">
+      <div class="topic-text">Gadget Addiction Test</div>
+      <p>Coba tes tingkat kecanduan penggunaan gadgetmu sekarang!</p>
+      <form class="myForm" id="myForm">
+        <!-- <div class="input-box">
+          <label for="username">Full Name</label>
+          <input type="text" class="name" placeholder="Enter your name">
+          <div class="error"></div>
+        </div> -->
+        <div class="input-box">
+          <label for="waktu-hiburan">Berapa jam dalam sehari anda menghabiskan waktu penggunaan gadget hanya untuk
+            hiburan?</label>
+          <input type="number" id="waktu-hiburan" placeholder="Masukkan dalam satuan jam, co: 8">
+          <div class="error"></div>
+        </div>
+        <div class="input-box">
+          <label for="lepas-gadget">Seberapa sering Anda merasa sulit untuk melepaskan diri dari gadget Anda ketika
+            sedang
+            melakukan aktivitas lain?</label>
+          <select id="lepas-gadget">
+            <option value="1">Sangat Jarang</option>
+            <option value="2">Jarang</option>
+            <option value="3">Biasa saja</option>
+            <option value="4">Sering</option>
+            <option value="5">Sangat Sering</option>
+          </select><br>
+          <div class="error"></div>
+        </div>
+
+        <div class="input-box">
+          <label for="aktivitas-lain">Seberapa sering Anda melupakan rencana kerja/aktivitas lain ketika menggunakan
+            gadget?</label>
+          <select id="aktivitas-lain">
+            <option value="1">Sangat Jarang</option>
+            <option value="2">Jarang</option>
+            <option value="3">Biasa saja</option>
+            <option value="4">Sering</option>
+            <option value="5">Sangat Sering</option>
+          </select><br>
+          <div class="error"></div>
+        </div>
+        <div class="input-box">
+          <label for="pendapat-orang">Orang orang di sekitar mengatakan Anda menggunakan gadget secara
+            berlebihan?</label>
+          <select id="pendapat-orang">
+            <option value="1">Sangat Jarang</option>
+            <option value="2">Jarang</option>
+            <option value="3">Biasa saja</option>
+            <option value="4">Sering</option>
+            <option value="5">Sangat Sering</option>
+          </select><br>
+          <div class="error"></div>
+        </div>
+        <div class="button">
+          <input type="button" value="Send Now" onclick="submitForm(event)">
+        </div>
+      </form>
+    </div>
+    <div class="structure">
+      <div class="head1">
+        <h1>Input User</h1>
+      </div>
+      <div id="data">
+        <p id="diri"></p>
+      </div>
+      <div class="head3">
+        <h1>Hasil Output</h1>
+      </div>
+      <div id="output">
+        <p id="prediksi"></p>
+        <img id="prediction-image" alt="Prediction Image" style="display: none;" />
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
