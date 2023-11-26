@@ -1,10 +1,10 @@
 function submitForm(event) {
+    event.preventDefault();  // Mencegah formulir untuk langsung dikirim
+    var predictionImage = document.getElementById("prediction-image");
     var waktu = document.getElementById("waktu-hiburan").value;
     var aktivitas = document.getElementById("aktivitas-lain").value;
     var lepas = document.getElementById("lepas-gadget").value;
     var pendapat = document.getElementById("pendapat-orang").value;
-
-    
 
     const validateInputs = () => {
         if (waktu === '') {
@@ -54,7 +54,6 @@ function submitForm(event) {
     };
 
     validateInputs();
-
     
     const inputElements = document.querySelectorAll('.input-box input, .input-box select');
 
@@ -76,7 +75,11 @@ function submitForm(event) {
         document.getElementById("diri").innerHTML = "Waktu hiburan: " + waktu + "<br />" + "Tingkat ketergangguan aktivitas: " + aktivitas + "<br />" + "Tingkat kesulitan lepas: " + lepas + "<br />" + "Tingkat pendapat orang lain: " + pendapat;
 
         // Mendapatkan data formulir
-        var formData = new FormData(event.target);
+        var formData = new FormData();
+        formData.append("waktu-hiburan", waktu);
+        formData.append("aktivitas-lain", aktivitas);
+        formData.append("lepas-gadget", lepas);
+        formData.append("pendapat-orang", pendapat);
 
         // Mengirim permintaan AJAX untuk prediksi
         fetch("/cgi-bin/prediction_script.py", {
@@ -85,19 +88,34 @@ function submitForm(event) {
         })
         .then(response => response.json())
         .then(data => {
+            
+            var predictionMessage = data.prediction === 1
+            ? "Kamu terindikasi mengalami kecanduan gadget! Kurangi frekuensi penggunaan gadegetmu"
+            : "Indikasi kecanduanmu masih terjaga, pertahankan ya!";
+
+            
+
+
             // Menampilkan hasil prediksi dengan SweetAlert
             Swal.fire({
                 title: 'Hasil Prediksi',
-                text: 'Prediksi: ' + data.prediction,
+                text: 'Prediksi: ' + predictionMessage,
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
 
             // Menampilkan hasil prediksi di dalam elemen div
-            document.getElementById("result-container").innerHTML = "Hasil Prediksi: " + data.prediction;
+           
+            document.getElementById("prediksi").innerHTML = "Hasil Prediksi: " + predictionMessage;
+
+            predictionImage.style.display = "block";
+            predictionImage.src = data.prediction === 1
+            ? "/css/pos.jpg"
+            : "/css/neg.png";
+
         })
         .catch(error => {
-            console.error("Terjadi kesalahan:", error);
+            console.log("Terjadi kesalahan:", error);
 
             // Menampilkan pesan kesalahan dengan SweetAlert
             Swal.fire({
@@ -106,9 +124,11 @@ function submitForm(event) {
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
+
+             // Menampilkan hasil prediksi di dalam elemen div
+             document.getElementById("prediksi").innerHTML = "Terjadi Kesalahan, Mohon tunggu dan coba kembali!";
         });
         
-        document.getElementById('myForm').submit();
     } else {
         console.log('There are inputs with errors. Form not submitted.');
     }

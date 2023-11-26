@@ -3,6 +3,11 @@
 
 <head>
   <title>Avd Prak GUI</title>
+  <!-- Sertakan SweetAlert CSS dan JavaScript -->
+  <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <!-- Index -->
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js"></script>
 </head>
@@ -12,7 +17,7 @@
     <div class="structure">
       <div class="topic-text">Gadget Addiction Test</div>
       <p>Coba tes tingkat kecanduan penggunaan gadgetmu sekarang!</p>
-      <form class="myForm">
+      <form class="myForm" id="myForm">
         <!-- <div class="input-box">
           <label for="username">Full Name</label>
           <input type="text" class="name" placeholder="Enter your name">
@@ -24,7 +29,6 @@
           <input type="number" id="waktu-hiburan" placeholder="Masukkan dalam satuan jam, co: 8">
           <div class="error"></div>
         </div>
-
         <div class="input-box">
           <label for="lepas-gadget">Seberapa sering Anda merasa sulit untuk melepaskan diri dari gadget Anda ketika
             sedang
@@ -79,7 +83,8 @@
         <h1>Hasil Output</h1>
       </div>
       <div id="output">
-
+        <p id="prediksi"></p>
+        <img id="prediction-image" alt="Prediction Image" style="display: none;" />
       </div>
     </div>
   </div>
